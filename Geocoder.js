@@ -27,8 +27,13 @@ export default Geocoder = {
 	 */
 	setApiKey(API_KEY) {
 		this.init(API_KEY);
+		this.language = "";
 	},
-
+	
+	setLanguage(language) {
+	    this.language = language;
+	 },	   
+	
 	/**
 	 * Do <a href="https://developers.google.com/maps/documentation/geocoding/intro#ReverseGeocoding">(reverse) geocoding</a>, converting geographic coordinates into a human-readable address & vice-versa.
 	 * Accepted parameters:
@@ -69,7 +74,7 @@ export default Geocoder = {
 		else if (typeof params[0] === 'string')
 			queryParams = {address : params[0]};
 
-
+		if(this.language != "") queryParams.language = this.language
 		// --- start geocoding ---
 
 		// check query params
